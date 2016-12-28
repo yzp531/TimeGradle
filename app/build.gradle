@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '25.0.0'
+
+    defaultConfig {
+        applicationId "cn.edu.zafu.gradleplugin"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url uri('../repo')
+        }
+    }
+    dependencies {
+        //classpath 'cn.edu.zafu.gradle.plugin:time:1.0.0'
+        classpath 'cn.edu.zafu.gradle.plugin:test:1.0.0'
+    }
+}
+
+
+
+
+
+
+//apply plugin: 'plugin.time'
+apply plugin: 'plugin.test'
+
+pluginExt {
+    param1 = 'app param1'
+    param2 = 'app param2'
+    nestExt{
+        nestParam1='app nestParam1'
+        nestParam2='app nestParam2'
+
+    }
+}
